@@ -1,14 +1,14 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getFilter } from '../../redux/phone-book/phonebook-selector';
+import { phoneBoookSelectors } from 'redux/phone-book';
 import s from './Filter.module.css';
-import { filterContact } from '../../redux/phone-book/phonebook-actions';
+import { phoneBoookActions } from 'redux/phone-book';
 
 function Filter() {
-  const filter = useSelector(getFilter);
+  const filter = useSelector(phoneBoookSelectors.getFilter);
   const dispatch = useDispatch();
-  const onChange = ({ target }) => dispatch(filterContact(target.value));
+  const onChange = ({ target }) =>
+    dispatch(phoneBoookActions.filterContact(target.value));
   return (
     <>
       <label className={s.filterLabel}>

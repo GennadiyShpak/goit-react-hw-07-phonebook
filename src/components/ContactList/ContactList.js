@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getFilterName } from '../../redux/phone-book/phonebook-selector';
+import { phoneBoookSelectors } from 'redux/phone-book';
 
 import s from './Contats.module.css';
-import operations from '../../redux/phone-book/phonebook-operations';
+import { phoneBoookOperations } from 'redux/phone-book';
 
 function ContactList() {
-  const contacts = useSelector(getFilterName);
+  const contacts = useSelector(phoneBoookSelectors.getFilterName);
   const dispatch = useDispatch();
-  const onDelete = id => dispatch(operations.deleteContact(id));
+  const onDelete = id => dispatch(phoneBoookOperations.deleteContact(id));
 
   if (contacts.length === 0) {
     return null;

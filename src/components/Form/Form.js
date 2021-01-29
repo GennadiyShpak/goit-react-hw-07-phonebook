@@ -2,16 +2,16 @@ import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useState, useEffect } from 'react';
 
-import operations from '../../redux/phone-book/phonebook-operations';
+import { phoneBoookOperations } from '../../redux/phone-book';
 import s from './Form.module.css';
 
 const Form = () => {
   const [state, setState] = useState();
   const { register, handleSubmit, reset } = useForm();
   const dispatch = useDispatch();
-  const onSubmit = text => dispatch(operations.addContact(text));
+  const onSubmit = text => dispatch(phoneBoookOperations.addContact(text));
   useEffect(() => {
-    dispatch(operations.fetchContacts());
+    dispatch(phoneBoookOperations.fetchContacts());
   }, [dispatch]);
 
   const oninputHandler = ({ target }) => {

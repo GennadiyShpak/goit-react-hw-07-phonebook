@@ -14,7 +14,7 @@ import {
 
 axios.defaults.baseURL = 'http://localhost:3004';
 
-const fetchContacts = () => async dispatch => {
+export const fetchContacts = () => async dispatch => {
   dispatch(fetchContactRequest());
   try {
     const { data } = await axios.get('/contacts');
@@ -24,7 +24,7 @@ const fetchContacts = () => async dispatch => {
   }
 };
 
-const addContact = ({ name, number }) => dispatch => {
+export const addContact = ({ name, number }) => dispatch => {
   const contact = { name, number, completed: false };
 
   dispatch(addContactRequest);
@@ -36,7 +36,7 @@ const addContact = ({ name, number }) => dispatch => {
     .catch(error => dispatch(addContactError(error)));
 };
 
-const deleteContact = contactId => dispatch => {
+export const deleteContact = contactId => dispatch => {
   dispatch(deleteContactRequest);
 
   axios
@@ -44,7 +44,3 @@ const deleteContact = contactId => dispatch => {
     .then(() => dispatch(deleteContactSuccess(contactId)))
     .catch(error => dispatch(deleteContactError, error));
 };
-
-const operations = { addContact, deleteContact, fetchContacts };
-
-export default operations;
