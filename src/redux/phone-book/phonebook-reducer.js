@@ -15,7 +15,10 @@ import {
 } from './phonebook-actions';
 
 const contactsReducer = createReducer([], {
-  [fetchContactSuccess]: (_, { payload }) => payload,
+  [fetchContactSuccess]: (_, { payload }) => {
+    console.log(payload);
+    return payload;
+  },
   [addContactSuccess]: (state, { payload }) => [...state, payload],
   [deleteContactSuccess]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
